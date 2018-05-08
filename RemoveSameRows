@@ -1,0 +1,37 @@
+"This R script compares the  rows of a matrix  starting from the first row and remove 
+the the next coming similar row. The  criteria for the similarity is set by the user
+as the count of similar numbers in the selected rows."
+
+rowsSame = matrix (c(0,0), nrow =1 , byrow = TRUE) # Initialize a matrix element
+i= 1
+
+repeat{
+  
+  itera=0
+  j= 1
+  criteriA = 4
+  activeRow = mydata[i,]      # Select column to be compared from the storage matrix mydata
+  numrow=nrow(mydata)         # find the number of rows in the data matrix
+  
+  for (j in i+1:numrow){
+    
+    if(j > numrow){break}
+    diffvect = setdiff(mydata[j,], activeRow)   # compare rows to find different values
+    
+    if(length(diffvect)< criteriA){             # if values are same within the given criteria break the loop!
+      itera = 1
+      break
+    }
+  }
+  
+  if(itera ==1){
+    rowsSame = rbind(rowsSame, c(i, j))         # Storage for data prognosis/debuging
+    mydata = mydata[-j,]                        # Remove one of the same rows, prefereably the one that comes last
+  }
+  else{
+    i = i +1                                    # proceed to the comparison of next row
+  }
+  
+  if(i == numrow){break}
+}
+
