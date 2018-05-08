@@ -1,0 +1,48 @@
+"This R script compares a coupon with the  rows of a matrix  starting from the first row, 
+and stores the matching rows in a different matrix called SameNumbers.if there are many 
+rows matching the criteria then 4 of them are randomly selected and displayed as the lucky
+coupons for the next draw"
+
+
+# Initialize  vector/matrix elements
+
+rowsSame = c(0,0)                
+SameNumbers = matrix(c(1,1,1,1,1,1), nrow =1 , byrow = TRUE)
+AngeboteneReihe = matrix(c(1,1,1,1,1,1), nrow =1 , byrow = TRUE)
+mALZ = c(4,6,10,11,17,25)
+i= 1
+j= 1
+itera=0
+criteriA = 6
+
+numrow_1=nrow(mydata)                               # find the number of rows in the data mmatrix
+
+
+for (i in 1:numrow_1){
+  
+
+    diffvect = setdiff(mydata[i,], mALZ)            # compare rows to find different values
+    
+    if(length(diffvect) >= criteriA){               # if values are same within the given criteria !
+      
+      itera = itera + 1
+      SameNumbers<- rbind(SameNumbers, mydata[i,])  # Data prognosis/debuging tool
+      rowsSame <- c(rowsSame, i)
+    }
+  
+} #end for
+
+numrow_2 = nrow(SameNumbers)
+
+if(numrow_2 == 1){print ("There is no match!")}
+
+if(numrow_2 > 4) {
+  sv = c(2:numrow_2)
+  reihe = sample(sv, 4)                             # Select lucky coupons
+  AngeboteneReihe <-rbind(AngeboteneReihe, SameNumbers[reihe[1],],  SameNumbers[reihe[2],], SameNumbers[reihe[3],], SameNumbers[reihe[4],])
+} else {
+  
+  AngeboteneReihe = SameNumbers
+}
+
+print ("Bitti")
