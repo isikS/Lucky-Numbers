@@ -1,5 +1,5 @@
 "This R script compares a coupon with the  rows of a matrix  starting from the first row, 
-and stores the matching rows in a different matrix called SameNumbers.if there are many 
+and stores the matching rows in a different matrix called SameNumbers. If there are many 
 rows matching the criteria then 4 of them are randomly selected and displayed as the lucky
 coupons for the next draw"
 
