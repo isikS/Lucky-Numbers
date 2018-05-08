@@ -1,0 +1,36 @@
+lnumbers_hist = c(1,1,1,1,1,1)
+
+
+repeat{
+  
+  itera=0
+  i= 1
+  
+  lnumbers<- sample(col1, 6)                  # randomly sample 6 number from 1 to 49
+  
+  numrow=nrow(mydata2)                        # number of rows in the lotto-numbers matrix
+  
+  if(numrow > 15){break}                      # set max allowed number of coupons generated
+  
+  for (i in 1:numrow){
+    
+    diffvect = setdiff(mydata2[i,],lnumbers)   # compare rows to find different values
+    
+    if(length(diffvect)< 4){                   # if more than two numbers are the same for the compared rows, break the loop
+      itera =  1
+      print("+1")
+      break 
+    }
+  }
+    
+  if(itera ==1){
+      lnumbers_hist =c(lnumbers, lnumbers_hist)  # storage for prognosis/debugging
+  }
+  else{
+    mydata2<-rbind(mydata2, rep(lnumbers))      # add new row to the existing matrix
+    mydata2 = t(apply(mydata2, 1, sort))        # sort rows of the matrix independent of each other
+  }
+    
+                      
+}
+  
