@@ -1,3 +1,13 @@
+"This R script is used to randomly generate 6 numbers from 1 to 49, which
+I call as a coupon and compare them to the previous winning numbers. If 
+there are more than 2 common numbers between  the newly generated coupon, 
+and previous winning numbers/coupons  from a designated database  the 
+generated coupon will not be accepted. The generation of numbers will 
+continue until a preset value for the allowed number of coupons is reached.
+The coupons generated will be stored in a matrix, and the numbers in each 
+coupon will be sorted in ascending order. "
+
+
 lnumbers_hist = c(1,1,1,1,1,1)
 
 
